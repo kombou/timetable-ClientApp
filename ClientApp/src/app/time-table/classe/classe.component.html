@@ -1,0 +1,41 @@
+<hr class="m-0">
+<h4>Classe</h4>
+<div class="col-12 row" *ngIf="timeTable">
+  <div>
+    <div class="table">
+      <thead>
+        <tr>
+          <th>Horaires</th>
+          <th>Lundi</th>
+          <th>Mardi</th>
+          <th>Mercredi</th>
+          <th>Jeudi</th>
+          <th>Vendredi</th>
+          <th>Samedi</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let time of timeTable">
+        <tr>
+          <th>
+            {{time.idperiodeNavigation.heureDebut}}h:{{time.idperiodeNavigation.minuteDebut}}
+            -{{time.idperiodeNavigation.heureFin}}h:{{time.idperiodeNavigation.minuteFin}}
+          </th>
+          <th>
+            {{time.idjourNavigation.nom}}<br>
+            {{time.idprogrammeNavigation.enseignantNavigation.nom}}<br>
+            {{time.idsalleNavigation.nom}}
+          </th>
+
+        </tr>
+      </tbody>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div>{{time.idprogrammeNavigation.annee}}</div>
+        <h5 class="card-title">{{time.idprogrammeNavigation.annee}}</h5>
+      </div>
+      <div class="card-footer text-right">
+      </div>
+    </div>
+  </div>
+</div>

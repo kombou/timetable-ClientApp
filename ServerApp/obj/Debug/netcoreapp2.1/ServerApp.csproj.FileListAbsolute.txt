@@ -1,0 +1,14 @@
+F:\L3\Document de stage\emploie de temps\ServerApp\bin\Debug\netcoreapp2.1\ServerApp.deps.json
+F:\L3\Document de stage\emploie de temps\ServerApp\bin\Debug\netcoreapp2.1\ServerApp.runtimeconfig.json
+F:\L3\Document de stage\emploie de temps\ServerApp\bin\Debug\netcoreapp2.1\ServerApp.runtimeconfig.dev.json
+F:\L3\Document de stage\emploie de temps\ServerApp\bin\Debug\netcoreapp2.1\ServerApp.dll
+F:\L3\Document de stage\emploie de temps\ServerApp\obj\Debug\netcoreapp2.1\ServerApp.csprojAssemblyReference.cache
+F:\L3\Document de stage\emploie de temps\ServerApp\obj\Debug\netcoreapp2.1\ServerApp.csproj.CoreCompileInputs.cache
+F:\L3\Document de stage\emploie de temps\ServerApp\obj\Debug\netcoreapp2.1\ServerApp.RazorAssemblyInfo.cache
+F:\L3\Document de stage\emploie de temps\ServerApp\obj\Debug\netcoreapp2.1\ServerApp.RazorAssemblyInfo.cs
+F:\L3\Document de stage\emploie de temps\ServerApp\obj\Debug\netcoreapp2.1\ServerApp.AssemblyInfoInputs.cache
+F:\L3\Document de stage\emploie de temps\ServerApp\obj\Debug\netcoreapp2.1\ServerApp.AssemblyInfo.cs
+F:\L3\Document de stage\emploie de temps\ServerApp\obj\Debug\netcoreapp2.1\ServerApp.RazorTargetAssemblyInfo.cache
+F:\L3\Document de stage\emploie de temps\ServerApp\bin\Debug\netcoreapp2.1\ServerApp.pdb
+F:\L3\Document de stage\emploie de temps\ServerApp\obj\Debug\netcoreapp2.1\ServerApp.dll
+F:\L3\Document de stage\emploie de temps\ServerApp\obj\Debug\netcoreapp2.1\ServerApp.pdb
