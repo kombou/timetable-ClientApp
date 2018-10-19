@@ -1,3 +1,7 @@
+import {Jour} from './Jour';
+
 export class Time {
-  constructor() {}
+  constructor(
+    public idjourNavigation: Jour
+  ) {}
 }

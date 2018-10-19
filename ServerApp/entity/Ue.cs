@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ServerApp.entity
@@ -22,6 +23,7 @@ namespace ServerApp.entity
         public Filiere IdfiliereNavigation { get; set; }
         public ICollection<Moyennes> Moyennes { get; set; }
         public ICollection<Notes> Notes { get; set; }
+        [JsonIgnore]
         public ICollection<Programme> Programme { get; set; }
     }
 }

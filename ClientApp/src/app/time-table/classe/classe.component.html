@@ -5,37 +5,75 @@
     <div class="table">
       <thead>
         <tr>
-          <th>Horaires</th>
-          <th>Lundi</th>
-          <th>Mardi</th>
-          <th>Mercredi</th>
-          <th>Jeudi</th>
-          <th>Vendredi</th>
-          <th>Samedi</th>
+            <th>Horaires</th>
+            <th>Lundi</th>
+            <th>Mardi</th>
+            <th>Mercredi</th>
+            <th>Jeudi</th>
+            <th>Vendredi</th>
+            <th>Samedi</th>
         </tr>
       </thead>
-      <tbody *ngFor="let time of timeTable">
-        <tr>
-          <th>
-            {{time.idperiodeNavigation.heureDebut}}h:{{time.idperiodeNavigation.minuteDebut}}
-            -{{time.idperiodeNavigation.heureFin}}h:{{time.idperiodeNavigation.minuteFin}}
-          </th>
-          <th>
-            {{time.idjourNavigation.nom}}<br>
-            {{time.idprogrammeNavigation.enseignantNavigation.nom}}<br>
-            {{time.idsalleNavigation.nom}}
-          </th>
-
+      <tbody>
+        <tr >
+              <td>
+                <div *ngFor="let time of timeTable">
+                  <h6>
+                    {{time.idperiodeNavigation.heureDebut}}h:{{time.idperiodeNavigation.minuteDebut}}
+                    -{{time.idperiodeNavigation.heureFin}}h:{{time.idperiodeNavigation.minuteFin}}
+                  </h6>
+                </div>
+              </td>
+              <td >
+                <div *ngFor="let lundi of timeLundi; let i = index">
+                  <div *ngIf="lundi.idperiodeNavigation.id != i+1">
+                    <h4>RAS</h4>
+                  </div>
+                  {{lundi.idjourNavigation.nom}}<br>
+                  {{lundi.idprogrammeNavigation.enseignantNavigation.nom}}<br>
+                  {{lundi.idsalleNavigation.nom}}
+                </div>
+              </td>
+              <td >
+                <div *ngFor="let mardi of timeMardi">
+                  <div *ngIf="lundi.idperiodeNavigation.id != i+1">
+                    <h4>RAS</h4>
+                  </div>
+                  {{mardi.idjourNavigation.nom}}<br>
+                  {{mardi.idprogrammeNavigation.enseignantNavigation.nom}}<br>
+                  {{mardi.idsalleNavigation.nom}}
+                </div>
+              </td>
+              <td >
+                <div *ngFor="let mercredi of timeMercredi">
+                  {{mercredi.idjourNavigation.nom}}<br>
+                  {{mercredi.idprogrammeNavigation.enseignantNavigation.nom}}<br>
+                  {{mercredi.idsalleNavigation.nom}}
+                </div>
+              </td>
+              <td >
+                <div *ngFor="let jeudi of timeJeudi">
+                  {{jeudi.idjourNavigation.nom}}<br>
+                  {{jeudi.idprogrammeNavigation.enseignantNavigation.nom}}<br>
+                  {{jeudi.idsalleNavigation.nom}}
+                </div>
+              </td>
+              <td >
+                <div *ngFor="let vendredi of timeVendredi">
+                  {{vendredi.idjourNavigation.nom}}<br>
+                  {{vendredi.idprogrammeNavigation.enseignantNavigation.nom}}<br>
+                  {{vendredi.idsalleNavigation.nom}}
+                </div>
+              </td>
+              <td >
+                <div *ngFor="let samedi of timeSamedi">
+                  {{samedi.idjourNavigation.nom}}<br>
+                  {{samedi.idprogrammeNavigation.enseignantNavigation.nom}}<br>
+                  {{samedi.idsalleNavigation.nom}}
+                </div>
+              </td>
         </tr>
       </tbody>
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <div>{{time.idprogrammeNavigation.annee}}</div>
-        <h5 class="card-title">{{time.idprogrammeNavigation.annee}}</h5>
-      </div>
-      <div class="card-footer text-right">
-      </div>
     </div>
   </div>
 </div>

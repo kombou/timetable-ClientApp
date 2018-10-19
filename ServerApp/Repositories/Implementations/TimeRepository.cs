@@ -21,6 +21,7 @@ namespace ServerApp.Repositories.Implementations
             return Collections
                 .Include(p => p.IdprogrammeNavigation)
                 .Include(p => p.IdprogrammeNavigation.EnseignantNavigation)
+                .Include(p => p.IdprogrammeNavigation.IdueNavigation)
                 .Where(p => p.IdprogrammeNavigation.Semestre == 1)
                 .Include(c => c.IdperiodeNavigation)
                 .Include(j => j.IdjourNavigation)
@@ -28,6 +29,7 @@ namespace ServerApp.Repositories.Implementations
                 .Where(p => p.IdprogrammeNavigation.IdclasseNavigation.Idfiliere == 2)
                 .Where(p => p.IdprogrammeNavigation.IdclasseNavigation.Codgrade == "L")
                 .Where(p => p.IdprogrammeNavigation.IdclasseNavigation.Niveau == "3")
+                .OrderBy(p => p.Idjour)
                 .ToArray();
         }
     }

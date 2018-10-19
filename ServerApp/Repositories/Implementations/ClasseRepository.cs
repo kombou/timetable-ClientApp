@@ -29,6 +29,7 @@ namespace ServerApp.Repositories.Implementations
         {
             return context.Classe
                     .Include(f => f.IdfiliereNavigation)
+                    .Where(c => c.Idspecialite == 4)
                     .ToArray();
         }
     }
