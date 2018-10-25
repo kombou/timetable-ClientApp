@@ -17,7 +17,13 @@ namespace ServerApp.Controllers
             this.repository = repository;
         }
 
-        [HttpGet]
-        public IEnumerable<Time> List() => repository.List();
+        [HttpPost("classe/{semestre}")]
+        public IEnumerable<Time> TimeTableOfClasse([FromBody] Classe classe, int semestre) => repository.TimeTableOfClasse(classe,semestre);
+
+        [HttpPost("enseignant/{semestre}")]
+        public IEnumerable<Time> TimeTableOfEnseignant([FromBody] Enseignant enseignant, int semestre) => repository.TimeTableOfEnseignant(enseignant,semestre);
+
+        [HttpPost("salle/{semestre}")]
+        public IEnumerable<Time> TimeTableOfSalle([FromBody] Salle salle, int semestre) => repository.TimeTableOfSalle(salle,semestre);
     }
 }

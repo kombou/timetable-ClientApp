@@ -32,5 +32,10 @@ namespace ServerApp.Repositories.Implementations
                     .Where(c => c.Idspecialite == 4)
                     .ToArray();
         }
+
+        public bool ClasseExists(int id)
+        {
+            return context.Classe.Any(e => e.Idclasse == id);
+        }
     }
 }

@@ -34,6 +34,8 @@ namespace ServerApp
             services.AddSession();
             services.AddTransient<ITimeRepository,TimeRepository>();
             services.AddTransient<IClasseRepository, ClasseRepository>();
+            services.AddTransient<IEnseignantRepository, EnseignantRepository>();
+            services.AddTransient<ISalleRepository, SalleRepository>();
             services.AddCors(options => {
                 options.AddPolicy("CorsPolicy", builder => builder
 

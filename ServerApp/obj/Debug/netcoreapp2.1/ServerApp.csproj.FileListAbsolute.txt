@@ -12,3 +12,5 @@ F:\L3\Document de stage\emploie de temps\ServerApp\obj\Debug\netcoreapp2.1\Serve
 F:\L3\Document de stage\emploie de temps\ServerApp\bin\Debug\netcoreapp2.1\ServerApp.pdb
 F:\L3\Document de stage\emploie de temps\ServerApp\obj\Debug\netcoreapp2.1\ServerApp.dll
 F:\L3\Document de stage\emploie de temps\ServerApp\obj\Debug\netcoreapp2.1\ServerApp.pdb
+F:\L3\Document de stage\emploie de temps\ServerApp\bin\Debug\netcoreapp2.1\ServerApp.Views.dll
+F:\L3\Document de stage\emploie de temps\ServerApp\obj\Debug\netcoreapp2.1\ServerApp.csproj.CopyComplete
