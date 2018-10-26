@@ -23,8 +23,6 @@ namespace ServerApp.Controllers
             this.timeRepository = timeRepository;
         }
 
-        public Periode Add([FromBody] Periode periode) => repository.Save(periode);
-
         [HttpGet("classe/{idClasse}")]
         public IEnumerable<Periode> PeriodesOfClasse(int idClasse) => timeRepository.PeriodesOfClasse(idClasse);
 
@@ -60,7 +58,7 @@ namespace ServerApp.Controllers
                 }
             }
 
-            periode = await repository.Save(periode);
+            periode =  repository.Save(periode);
 
             return Ok(periode);
         }
