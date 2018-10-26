@@ -9,7 +9,7 @@ namespace ServerApp.entity
         public int Idprogramme { get; set; }
         public int Idsalle { get; set; }
         public int Idperiode { get; set; }
-        public int? Idjour { get; set; }
+        public int Idjour { get; set; }
 
         public Jour IdjourNavigation { get; set; }
         public Periode IdperiodeNavigation { get; set; }
