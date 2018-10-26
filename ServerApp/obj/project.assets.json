@@ -12378,23 +12378,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\lesli\\.nuget\\packages\\": {},
+    "C:\\Users\\FRANCK TONYA\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\L3\\Document de stage\\emploie de temps\\ServerApp\\ServerApp.csproj",
+      "projectUniqueName": "D:\\Projet Stage\\ModulesApp\\TimeApp\\timetable-ClientApp\\ServerApp\\ServerApp.csproj",
       "projectName": "ServerApp",
-      "projectPath": "F:\\L3\\Document de stage\\emploie de temps\\ServerApp\\ServerApp.csproj",
-      "packagesPath": "C:\\Users\\lesli\\.nuget\\packages\\",
-      "outputPath": "F:\\L3\\Document de stage\\emploie de temps\\ServerApp\\obj\\",
+      "projectPath": "D:\\Projet Stage\\ModulesApp\\TimeApp\\timetable-ClientApp\\ServerApp\\ServerApp.csproj",
+      "packagesPath": "C:\\Users\\FRANCK TONYA\\.nuget\\packages\\",
+      "outputPath": "D:\\Projet Stage\\ModulesApp\\TimeApp\\timetable-ClientApp\\ServerApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\lesli\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\FRANCK TONYA\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
