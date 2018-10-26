@@ -23,6 +23,8 @@ namespace ServerApp.Controllers
             this.timeRepository = timeRepository;
         }
 
+
+
         [HttpGet("classe/{idClasse}")]
         public IEnumerable<Periode> PeriodesOfClasse(int idClasse) => timeRepository.PeriodesOfClasse(idClasse);
 
