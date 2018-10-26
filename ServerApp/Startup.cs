@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ServerApp.entity;
 using ServerApp.Repositories.Contracts;
 using ServerApp.Repositories.Implementations;
+using ServerApp.services;
 
 namespace ServerApp
 {
@@ -36,6 +37,10 @@ namespace ServerApp
             services.AddTransient<IClasseRepository, ClasseRepository>();
             services.AddTransient<IEnseignantRepository, EnseignantRepository>();
             services.AddTransient<ISalleRepository, SalleRepository>();
+            services.AddTransient<IPeriodeRepository, PeriodeRepository>();
+            services.AddTransient<IJourRepository, JourRepository>();
+            services.AddTransient<IProgrammeRepository, ProgrammeRepository>();
+            services.AddSingleton<ITimeService, TimeService>();
             services.AddCors(options => {
                 options.AddPolicy("CorsPolicy", builder => builder
 

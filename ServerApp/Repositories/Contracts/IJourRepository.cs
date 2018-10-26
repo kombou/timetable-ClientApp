@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ServerApp.Repositories.Contracts
 {
-    public interface IPeriodeRepository : IRepository<Periode, int>
+    public interface IJourRepository: IRepository<Jour,int>
     {
-        bool PeriodeExists(int id);
-        bool Compare(Periode periodeCompare, Periode period);
+        bool JourExists(int id);
     }
 }

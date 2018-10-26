@@ -38,6 +38,9 @@ namespace ServerApp.Repositories.Implementations
             return true;
         }
 
-
+        public bool PeriodeExists(int id)
+        {
+            return context.Periode.Any(e => e.Id == id);
+        }
     }
 }

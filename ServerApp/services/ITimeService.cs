@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServerApp.services
 {
-    public interface ITimeServices
+    public interface ITimeService
     {
         IEnumerable<ModelPeriode> ModelPeriodes(IEnumerable<Time> times);
     }
