@@ -27,17 +27,6 @@ namespace ServerApp.Repositories.Implementations
 
         public override DbSet<Periode> Collections => context.Periode;
 
-        public bool Compare(Periode periodeCompare, Periode period)
-        {
-            /*ModelPeriode modelCompare = new ModelPeriode(periodeCompare);
-            ModelPeriode model = new ModelPeriode(period);
-
-            return modelCompare.Debut.NanosecondOfDay < model.Debut.NanosecondOfDay &&
-                   modelCompare.Fin.NanosecondOfDay < model.Fin.NanosecondOfDay &&
-                   modelCompare.Jour == model.Jour;*/
-            return true;
-        }
-
         public bool PeriodeExists(int id)
         {
             return context.Periode.Any(e => e.Id == id);
