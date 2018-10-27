@@ -21,8 +21,9 @@ namespace ServerApp.entity
         public uint Credit { get; set; }
 
         public Enseignant EnseignantNavigation { get; set; }
-        public Classe IdclasseNavigation { get; set; }
         public Ue IdueNavigation { get; set; }
+        public Classe IdclasseNavigation { get; set; }
+        
         public Semestre SemestreNavigation { get; set; }
         [JsonIgnore]
         public ICollection<Time> Time { get; set; }

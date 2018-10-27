@@ -18,9 +18,19 @@ namespace ServerApp.Repositories.Implementations
         {
             get
             {
-                Programme programme = context.Programme.FirstOrDefault(p => p.Id == id);
+                Programme programme = context.Programme
+                    .Include(p => p.EnseignantNavigation)
+                    .Include(p => p.IdueNavigation)
+                    .FirstOrDefault(p => p.Id == id);
                 return programme;
             }
+        }
+        public override IEnumerable<Programme> List()
+        {
+            return context.Programme
+                .Include(p => p.EnseignantNavigation)
+                .Include(p => p.IdueNavigation)
+                .ToArray();
         }
 
         public bool ProgrammeExists(int id)

@@ -8,6 +8,7 @@ import {Periode} from '../../models/Periode';
 import {PeriodeRepository} from '../../periode/periode.repository';
 import {JourRepository} from '../../jour/jour.repository';
 import {Jour} from '../../models/Jour';
+import {TimeTableRepository} from '../time-table.repository';
 
 @Component({
   templateUrl: 'create.time-table.component.html'
@@ -20,11 +21,16 @@ export class CreateTimeTableComponent implements OnInit {
   periodeList: Periode[] = [];
   jourList: Jour[] = [];
 
+  timeLine: Time;
+  semestre: number;
+  errors = {};
+
   constructor(
     private programmeRepository: ProgrammeRepository,
     private salleRepository: SalleRepository,
     private periodeRepository: PeriodeRepository,
     private jourRepository: JourRepository,
+    private timeRepository: TimeTableRepository
   ) {
 
     this.programmeRepository.List().subscribe(l => {
@@ -46,13 +52,14 @@ export class CreateTimeTableComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
+    this.semestre = 1;
   }
 
   createForm() {
     this.timeLineForm = new FormGroup({
       programme: new FormControl('', Validators.required),
       salle: new FormControl('', Validators.required),
-      periode: new FormControl('', [Validators.required, Validators.email]),
+      periode: new FormControl('', Validators.required),
       jour: new FormControl('', Validators.required)
     });
   }
@@ -71,5 +78,18 @@ export class CreateTimeTableComponent implements OnInit {
 
   onSubmitForm() {
     const formValue = this.timeLineForm.value;
+    const time = new Time(
+      formValue.programme,
+      formValue.salle,
+      formValue.periode,
+      formValue.jour,
+    );
+
+    this.timeRepository.Add(time , this.semestre).subscribe(t => {
+      this.timeLine = t;
+      console.log(this.timeLine);
+    }, r => {
+      this.errors = r.error;
+    });
   }
 }

@@ -15,7 +15,11 @@ export class TimeTableRepository {
     return  this.httpClient.get<Time[]>(this.url);
   }
 
-  listPeriode(periode:Periode){
+  listPeriode(periode: Periode) {
     return this.httpClient.get<Periode[]>(this.urlPeriode);
+  }
+
+  Add(timeLine: Time, semestre: number) {
+    return this.httpClient.post<Time>(`${this.url}/${semestre}`, timeLine);
   }
 }

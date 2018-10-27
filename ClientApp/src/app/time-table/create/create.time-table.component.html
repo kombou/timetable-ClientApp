@@ -15,13 +15,14 @@
             <label>UE</label>
             <select class="form-control" aria-describedby="programme" formControlName="programme">
                 <option class="form-control" *ngFor="let pr of programmeList" value="{{pr.id}}">
-                  {{pr.idueNavigation.codue}}
-                  -({{pr.enseignantNavigation.nom}})
+                  {{pr.idueNavigation.codue}}-({{pr.enseignantNavigation.nom}} {{pr.enseignantNavigation.prenom}})
                 </option>
             </select>
             <div class="text-danger" *ngIf="programme.invalid && (programme.dirty || programme.touched)">
               <div *ngIf="programme.errors.required">Selectionner une UE.</div>
             </div>
+            <div class="text-danger" *ngIf="errors">{{errors.enseignant}}</div>
+            <div class="text-danger" *ngIf="errors">{{errors.programme}}</div>
           </div>
           <div class="form-group col-lg-6">
             <label>Salle</label>
@@ -31,6 +32,7 @@
             <div class="text-danger" *ngIf="salle.invalid && (salle.dirty || salle.touched)">
               <div *ngIf="salle.errors.required">Selectionner une salle.</div>
             </div>
+            <div class="text-danger" *ngIf="errors">{{errors.salle}}</div>
           </div>
         </div>
         <div class="form-group">
@@ -44,6 +46,7 @@
           <div class="text-danger" *ngIf="periode.invalid && (periode.dirty || periode.touched)">
             <div *ngIf="periode.errors.required">Selectionner un periode.</div>
           </div>
+          <div class="text-danger" *ngIf="errors">{{errors.periode}}</div>
         </div>
         <div class="form-group">
           <label>Jour</label>
@@ -53,8 +56,10 @@
           <div class="text-danger" *ngIf="jour.invalid && (jour.dirty || jour.touched)">
             <div *ngIf="jour.errors.required">Selectionner un jour.</div>
           </div>
+          <div class="text-danger" *ngIf="errors">{{errors.jour}}</div>
         </div>
         <button type="submit"  class="btn btn-primary text-uppercase offset-3"  [disabled]="timeLineForm.invalid">Enregistrer</button>
+        <div class="text-danger" *ngIf="errors">{{errors.time}}</div>
         <br>
       </form >
       <br>
