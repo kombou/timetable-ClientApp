@@ -1,0 +1,59 @@
+<div style="text-align:center; color: #007bff;"><span><h1>UNIVERSITE DE YAOUNDE I</h1></span>
+
+</div>
+<br>
+<div class="col-lg-4 offset-4" style="background-color: #eeeeee;">
+  <br><br>
+  <div class="card p-10" style="background-color: #eeeeee">
+
+    <h5 class="card-title" style="text-align: center;">Add Time-table Line</h5>
+    <hr/>
+    <div class="card-body">
+      <form [formGroup]="timeLineForm" (ngSubmit)="onSubmitForm()">
+        <div class="row">
+          <div class="form-group col-lg-6">
+            <label>UE</label>
+            <select class="form-control" aria-describedby="programme" formControlName="programme">
+                <option class="form-control">UE1</option>
+            </select>
+            <div class="text-danger" *ngIf="programme.invalid && (programme.dirty || programme.touched)">
+              <div *ngIf="programme.errors.required">Selectionner une UE.</div>
+            </div>
+          </div>
+          <div class="form-group col-lg-6">
+            <label>Salle</label>
+            <select class="form-control" aria-describedby="salle" formControlName="salle">
+              <option class="form-control">SALLE1</option>
+            </select>
+            <div class="text-danger" *ngIf="salle.invalid && (salle.dirty || salle.touched)">
+              <div *ngIf="salle.errors.required">Selectionner une salle.</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Periode</label>
+          <select class="form-control" aria-describedby="periode" formControlName="periode">
+            <option class="form-control">P1</option>
+          </select>
+          <div class="text-danger" *ngIf="periode.invalid && (periode.dirty || periode.touched)">
+            <div *ngIf="periode.errors.required">Selectionner un periode.</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Jour</label>
+          <select class="form-control" aria-describedby="jour" formControlName="jour">
+            <option class="form-control">J1</option>
+          </select>
+          <div class="text-danger" *ngIf="jour.invalid && (jour.dirty || jour.touched)">
+            <div *ngIf="jour.errors.required">Selectionner un jour.</div>
+          </div>
+        </div>
+        <button type="submit"  class="btn btn-primary text-uppercase offset-3"  [disabled]="timeLineForm.invalid">Enregistrer</button>
+        <br>
+      </form >
+      <br>
+    </div>
+  </div>
+</div>
+
+
