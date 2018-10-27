@@ -14,7 +14,10 @@
           <div class="form-group col-lg-6">
             <label>UE</label>
             <select class="form-control" aria-describedby="programme" formControlName="programme">
-                <option class="form-control">UE1</option>
+                <option class="form-control" *ngFor="let pr of programmeList" value="{{pr.id}}">
+                  {{pr.idueNavigation.codue}}
+                  -({{pr.enseignantNavigation.nom}})
+                </option>
             </select>
             <div class="text-danger" *ngIf="programme.invalid && (programme.dirty || programme.touched)">
               <div *ngIf="programme.errors.required">Selectionner une UE.</div>
@@ -23,7 +26,7 @@
           <div class="form-group col-lg-6">
             <label>Salle</label>
             <select class="form-control" aria-describedby="salle" formControlName="salle">
-              <option class="form-control">SALLE1</option>
+              <option class="form-control" *ngFor="let s of salleList" value="{{s.id}}">{{s.nom}}</option>
             </select>
             <div class="text-danger" *ngIf="salle.invalid && (salle.dirty || salle.touched)">
               <div *ngIf="salle.errors.required">Selectionner une salle.</div>
@@ -33,7 +36,10 @@
         <div class="form-group">
           <label>Periode</label>
           <select class="form-control" aria-describedby="periode" formControlName="periode">
-            <option class="form-control">P1</option>
+            <option class="form-control" *ngFor="let p of periodeList" value="{{p.id}}">
+              {{p.heureDebut}}h:{{p.minuteDebut}}
+              -{{p.heureFin}}h:{{p.minuteFin}}
+            </option>
           </select>
           <div class="text-danger" *ngIf="periode.invalid && (periode.dirty || periode.touched)">
             <div *ngIf="periode.errors.required">Selectionner un periode.</div>
@@ -42,7 +48,7 @@
         <div class="form-group">
           <label>Jour</label>
           <select class="form-control" aria-describedby="jour" formControlName="jour">
-            <option class="form-control">J1</option>
+            <option class="form-control" *ngFor="let j of jourList" value="{{j.id}}">{{j.nom}}</option>
           </select>
           <div class="text-danger" *ngIf="jour.invalid && (jour.dirty || jour.touched)">
             <div *ngIf="jour.errors.required">Selectionner un jour.</div>

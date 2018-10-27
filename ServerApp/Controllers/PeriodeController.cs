@@ -33,6 +33,9 @@ namespace ServerApp.Controllers
 
         [HttpGet("enseignant/{idEnseignant}")]
         public IEnumerable<Periode> PeriodesOfEnseignant(int idEnseignant) => timeRepository.PeriodesOfEnseignant(idEnseignant);
+		
+		[HttpGet]
+        public IEnumerable<Periode> List() => repository.List();
 
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] Periode periode)

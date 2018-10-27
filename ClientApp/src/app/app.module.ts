@@ -6,6 +6,10 @@ import {CoreModule} from './core/core.module';
 import {TimeTableModule} from './time-table/time-table.module';
 import {ClasseModule} from './classe/classe.module';
 import {routing} from './app.routing';
+import {ProgrammeModule} from './programme/programme.module';
+import {SalleModule} from './salle/salle.module';
+import {PeriodeModule} from './periode/periode.module';
+import {JourModule} from './jour/jour.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +20,10 @@ import {routing} from './app.routing';
     CoreModule,
     TimeTableModule,
     ClasseModule,
+    ProgrammeModule,
+    SalleModule,
+    PeriodeModule,
+    JourModule,
     routing
   ],
   providers: [],
