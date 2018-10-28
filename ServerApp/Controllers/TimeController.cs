@@ -40,7 +40,7 @@ namespace ServerApp.Controllers
             this.service = service;
         }
 
-        [HttpPost("classe/{semestre}")]
+        [HttpPost(Name ="/classe")]
         public IEnumerable<Time> TimeTableOfClasse([FromBody] Classe classe, int semestre) => repository.TimeTableOfClasse(classe,semestre);
 
         [HttpPost("enseignant/{semestre}")]
