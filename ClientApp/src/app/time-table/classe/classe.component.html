@@ -1,8 +1,8 @@
 <hr class="m-0">
-<h4>Classe</h4>
-<div class="col-12 row" *ngIf="timeTable">
+<h3 class="center-block">EMPLOI DE TEMPS DU SEMESTRE1 DE LA FILIERE INFORMATIQUE M1 </h3>
+<div  class="center-block">
   <div>
-    <div class="table">
+    <table class="table centered" border="1">
       <thead>
         <tr>
           <th>Horaires</th>
@@ -14,26 +14,101 @@
           <th>Samedi</th>
         </tr>
       </thead>
-      <tbody *ngFor="let time of timeTable">
-        <tr>
-          <th>
-            {{time.idperiodeNavigation.heureDebut}}h:{{time.idperiodeNavigation.minuteDebut}}
-            -{{time.idperiodeNavigation.heureFin}}h:{{time.idperiodeNavigation.minuteFin}}
-          </th>
-          <th>
-            {{time.idjourNavigation.nom}}<br>
-            {{time.idprogrammeNavigation.enseignantNavigation.nom}}<br>
-            {{time.idsalleNavigation.nom}}
-          </th>
+      <tbody *ngFor="let periode of periodeTable">
+        <tr>   
+          <th >
+            {{periode.heureDebut}}h:{{periode.minuteDebut}}
+            -{{periode.heureFin}}h:{{periode.minuteFin}}
+          </th> 
+          <td >
+              <div *ngFor="let time of timeTable;index as i">
+              <div *ngIf="periode.id==time.idperiode">
+                  <div *ngIf="time.idjour==1">
+               
+                {{time.idprogrammeNavigation.idueNavigation.codue}}<br>
+                  {{time.idprogrammeNavigation.enseignantNavigation.nom}}<br>
+             
+                  {{time.idsalleNavigation.nom}}
+                </div>
+              </div>
+            </div>
+          </td>
+       
+          <td >
+              <div *ngFor="let time of timeTable;index as i">
+              <div *ngIf="periode.id==time.idperiode">
+                  <div *ngIf="time.idjour==2">
+           
+                {{time.idprogrammeNavigation.idueNavigation.codue}}<br>
+                  {{time.idprogrammeNavigation.enseignantNavigation.nom}}<br>
+                  {{time.idsalleNavigation.nom}}
+                </div>
+              </div>
+              </div>
+          </td>
 
-        </tr>
+          <td >
+              <div *ngFor="let time of timeTable;index as i">
+              <div *ngIf="periode.id==time.idperiode">
+                  <div *ngIf="time.idjour==3">
+                
+                {{time.idprogrammeNavigation.idueNavigation.codue}}<br>
+                  {{time.idprogrammeNavigation.enseignantNavigation.nom}}<br>
+                  {{time.idsalleNavigation.nom}}
+                </div>
+              </div>
+              </div>
+          </td>
+
+          <td >
+              <div *ngFor="let time of timeTable;index as i">
+              <div *ngIf="periode.id==time.idperiode">
+                  <div *ngIf="time.idjour==4">
+               
+                {{time.idprogrammeNavigation.idueNavigation.codue}}<br>
+                  {{time.idprogrammeNavigation.enseignantNavigation.nom}}<br>
+                  {{time.idsalleNavigation.nom}}
+                </div>
+              </div>
+              </div>
+          </td>
+
+          <td >
+              <div *ngFor="let time of timeTable;index as i">
+              <div *ngIf="periode.id==time.idperiode">
+                  <div *ngIf="time.idjour==5">
+               
+               
+                  {{time.idprogrammeNavigation.idueNavigation.codue}}<br>
+                  {{time.idprogrammeNavigation.enseignantNavigation.nom}}<br>
+                  {{time.idsalleNavigation.nom}}
+                </div>
+              </div>
+              </div>
+          </td>
+          <td >
+              <div *ngFor="let time of timeTable;index as i">
+              <div *ngIf="periode.id==time.idperiode">
+                  <div *ngIf="time.idjour==6">
+               
+                {{time.idprogrammeNavigation.idueNavigation.codue}}<br>
+                  {{time.idprogrammeNavigation.enseignantNavigation.nom}}<br>
+                  {{time.idsalleNavigation.nom}}
+                </div>
+              </div>
+              </div>
+          </td>
+      
+      
+        
+         </tr>
       </tbody>
-    </div>
+    </table>
     <div class="card">
       <div class="card-body">
-        <div>{{time.idprogrammeNavigation.annee}}</div>
+        <!-- <div>{{time.idprogrammeNavigation.annee}}</div>
         <h5 class="card-title">{{time.idprogrammeNavigation.annee}}</h5>
-      </div>
+      </div> -->
       <div class="card-footer text-right">
       </div>
     </div>

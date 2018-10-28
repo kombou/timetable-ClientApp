@@ -30,7 +30,8 @@ namespace ServerApp.Repositories.Implementations
 
         public void Delete(T obj)
         {
-            throw new NotImplementedException();
+            Collections.Remove(obj);
+            context.SaveChanges();
         }
 
         public virtual IEnumerable<T> List()
@@ -40,12 +41,16 @@ namespace ServerApp.Repositories.Implementations
 
         public T Save(T obj)
         {
-            throw new NotImplementedException();
+            T saveObj = Collections.Add(obj).Entity;
+            context.SaveChanges();
+            return saveObj;
         }
 
         public T Update(T obj)
         {
-            throw new NotImplementedException();
+            T updateObj = Collections.Update(obj).Entity;
+            context.SaveChanges();
+            return updateObj;
         }
     }
 }

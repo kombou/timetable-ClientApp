@@ -8,5 +8,6 @@ namespace ServerApp.Repositories.Contracts
 {
     public interface IClasseRepository : IRepository<Classe,int>
     {
+        bool ClasseExists(int id);
     }
 }

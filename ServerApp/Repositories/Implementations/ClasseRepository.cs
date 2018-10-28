@@ -29,7 +29,13 @@ namespace ServerApp.Repositories.Implementations
         {
             return context.Classe
                     .Include(f => f.IdfiliereNavigation)
+                    .Where(c => c.Idspecialite == 4)
                     .ToArray();
+        }
+
+        public bool ClasseExists(int id)
+        {
+            return context.Classe.Any(e => e.Idclasse == id);
         }
     }
 }
