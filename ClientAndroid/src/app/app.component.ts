@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {AuthPage} from "../pages/auth/auth";
 import {AuthServices} from "../services/auth.services";
 import {TabsPage} from "../pages/tabs/tabs";
+import {Compte} from "../models/Compte";
 @Component({
   templateUrl: 'app.html'
 })
@@ -26,21 +27,39 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
 
       this.authService.getSession().then(user => {
-        if(user) {
+
+        const compte: Compte = user;
+        if(compte.matricule != null) {
+
+          this.authService.isAuth = true;
           this.isAuth = true;
           this.content.setRoot(TabsPage);
+
         } else {
+
+          this.authService.isAuth = false;
           this.isAuth = false;
           this.content.setRoot(AuthPage, {mode: 'connect'});
         }
       }).catch(err => {
-        console.log(err);
+
         this.content.setRoot(AuthPage, {mode: 'connect'});
-      })
+
+      });
       statusBar.styleDefault();
       splashScreen.hide();
     });
   }
+
+  onDisconnect() {
+    this.authService.signOut().then(()=> {
+      this.authService.isAuth = false;
+      this.content.setRoot(AuthPage,{mode: 'connect'});
+    }).catch(err => {
+      console.log('Problème de connexion');
+    })
+  }
+
   onTogglePage(page: any, data?: {}){
     this.content.setRoot(page, data ? data : null);
     this.menuCtrl.close();

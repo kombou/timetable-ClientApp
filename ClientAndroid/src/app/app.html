@@ -8,28 +8,28 @@
   <ion-content padding>
     <ion-list>
       <button ion-item
-              *ngIf="isAuth"
+              *ngIf="authService.isAuth"
               icon-start
               (click)="onTogglePage(tabsPage)">
         <ion-icon name="home"></ion-icon>
         Home
       </button>
       <button ion-item
-              *ngIf="!isAuth"
+              *ngIf="!authService.isAuth"
               icon-start
               (click)="onTogglePage(authPage, {mode: 'new'})">
         <ion-icon name="person-add"></ion-icon>
         Create user
       </button>
       <button ion-item
-              *ngIf="!isAuth"
+              *ngIf="!authService.isAuth"
               icon-start
               (click)="onTogglePage(authPage, {mode: 'connect'})">
         <ion-icon name="person"></ion-icon>
         Connexion
       </button>
       <button ion-item
-              *ngIf="isAuth"
+              *ngIf="authService.isAuth"
               icon-start
               (click)="onDisconnect()">
         <ion-icon name="exit"></ion-icon>

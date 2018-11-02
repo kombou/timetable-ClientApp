@@ -18,6 +18,7 @@
       <ion-item>
         <ion-label floating>Matricule</ion-label>
         <ion-input formControlName="matricule"></ion-input>
+        <p *ngIf="errorMessage" color="danger">{{errorMessage.Matricule}}</p>
       </ion-item>
       <ion-item>
         <ion-label floating>Password</ion-label>

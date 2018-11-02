@@ -3,7 +3,7 @@ import {AuthServices} from "../../services/auth.services";
 import {MenuController, NavController, NavParams, ToastController} from "ionic-angular";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Compte} from "../../models/Compte";
-import {HomePage} from "../home/home";
+import {TabsPage} from "../tabs/tabs";
 
 @Component({
   selector: 'page-auth',
@@ -13,7 +13,7 @@ export class AuthPage implements OnInit{
 
   authForm: FormGroup;
   mode: string;
-  errorMessage: string;
+  errorMessage: any;
   constructor(private authService: AuthServices,
               private navParams: NavParams,
               private formBuilder: FormBuilder,
@@ -52,7 +52,7 @@ export class AuthPage implements OnInit{
 
       this.authService.createEnseignant(compte).then(user => {
         compte = user;
-        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.setRoot(TabsPage);
       }).catch(err => {
         this.errorMessage = err;
         this.toastCtrl.create({
@@ -62,12 +62,18 @@ export class AuthPage implements OnInit{
         }).present();
       });
     } else if (this.mode === 'connect') {
+
       this.authService.signInUser(matricule, password).then(user => {
-        this.navCtrl.setRoot(HomePage);
+
+        this.authService.isAuth = true;
+        this.navCtrl.setRoot(TabsPage);
+
       }).catch(err => {
-        this.errorMessage = err;
+
+        this.errorMessage = err.error;
+
         this.toastCtrl.create({
-          message: 'Imposible de se connecté au serveur',
+          message: `Erreur : ${err.error.Passhash}`,
           duration: 3000,
           position: 'bottom'
         }).present();

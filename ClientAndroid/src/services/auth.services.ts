@@ -1,10 +1,12 @@
 import {HttpClient} from "@angular/common/http";
 import {Compte} from "../models/Compte";
 import {Injectable} from "@angular/core";
+import {SERVER_URL} from "../models/Serveur";
 
 @Injectable()
 export class AuthServices {
-  url = 'http://localhost:5000/api/comptes';
+  url = `${SERVER_URL}/api/comptes`;
+  isAuth: boolean;
 
   constructor(public httpClient: HttpClient) {
   }
@@ -21,7 +23,7 @@ export class AuthServices {
   }
   signInUser(matricule: string, password: string) {
     return new Promise((resolve, reject) => {
-      this.httpClient.post(this.url, {matricule: matricule, password: password})
+      this.httpClient.post(this.url, {matricule: matricule, passhash: password})
         .subscribe(user => {
           resolve(user);
         }, err => {
@@ -32,8 +34,8 @@ export class AuthServices {
 
   signOut() {
     return new Promise((resolve, reject) => {
-      this.httpClient.get(this.url).subscribe(user =>  {
-        resolve(user);
+      this.httpClient.get(this.url).subscribe(() =>  {
+        resolve("ok");
       },err => {
         reject(err);
       })
@@ -49,4 +51,5 @@ export class AuthServices {
       })
     });
   }
+
 }

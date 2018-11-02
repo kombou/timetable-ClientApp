@@ -12,6 +12,7 @@ import {AuthPage} from "../pages/auth/auth";
 import {ModulePage} from "../pages/module/module";
 import {SettingsPage} from "../pages/settings/settings";
 import {TabsPage} from "../pages/tabs/tabs";
+import {ModuleServices} from "../services/module.services";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {TabsPage} from "../pages/tabs/tabs";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthServices
+    AuthServices,
+    ModuleServices
   ]
 })
 export class AppModule {}
