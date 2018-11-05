@@ -1,9 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ServerApp.entity
-{
+{ 
     public partial class Jour
     {
         public Jour()
@@ -13,7 +12,7 @@ namespace ServerApp.entity
 
         public int Id { get; set; }
         public string Nom { get; set; }
-        [JsonIgnore]
+
         public ICollection<Time> Time { get; set; }
     }
 }

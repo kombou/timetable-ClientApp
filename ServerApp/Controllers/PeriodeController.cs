@@ -32,7 +32,7 @@ namespace ServerApp.Controllers
         public IEnumerable<Periode> PeriodesOfSalle(int idSalle) => timeRepository.PeriodesOfSalle(idSalle);
 
         [HttpGet("enseignant/{idEnseignant}")]
-        public IEnumerable<Periode> PeriodesOfEnseignant(int idEnseignant) => timeRepository.PeriodesOfEnseignant(idEnseignant);
+        public IEnumerable<Periode> PeriodesOfEnseignant(string idEnseignant) => timeRepository.PeriodesOfEnseignant(idEnseignant);
 
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] Periode periode)

@@ -12,6 +12,7 @@ namespace ServerApp.entity
             Moyennes = new HashSet<Moyennes>();
             Notes = new HashSet<Notes>();
             Notification = new HashSet<Notification>();
+            Programme = new HashSet<Programme>();
             Resultat = new HashSet<Resultat>();
         }
 
@@ -41,6 +42,7 @@ namespace ServerApp.entity
         public ICollection<Moyennes> Moyennes { get; set; }
         public ICollection<Notes> Notes { get; set; }
         public ICollection<Notification> Notification { get; set; }
+        public ICollection<Programme> Programme { get; set; }
         public ICollection<Resultat> Resultat { get; set; }
     }
 }

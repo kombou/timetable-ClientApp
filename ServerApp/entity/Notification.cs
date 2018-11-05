@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace ServerApp.entity
-{
+{ 
     public partial class Notification
     {
         public int Id { get; set; }

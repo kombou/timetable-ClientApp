@@ -18,6 +18,7 @@ namespace ServerApp.entity
         public virtual DbSet<Classe> Classe { get; set; }
         public virtual DbSet<Compte> Compte { get; set; }
         public virtual DbSet<Connect> Connect { get; set; }
+        public virtual DbSet<DroitAccess> DroitAccess { get; set; }
         public virtual DbSet<Efmigrationshistory> Efmigrationshistory { get; set; }
         public virtual DbSet<Enseignant> Enseignant { get; set; }
         public virtual DbSet<Etudiant> Etudiant { get; set; }
@@ -26,12 +27,14 @@ namespace ServerApp.entity
         public virtual DbSet<Inscrit> Inscrit { get; set; }
         public virtual DbSet<Jour> Jour { get; set; }
         public virtual DbSet<Mention> Mention { get; set; }
+        public virtual DbSet<Module> Module { get; set; }
         public virtual DbSet<Moyennes> Moyennes { get; set; }
         public virtual DbSet<Nationalite> Nationalite { get; set; }
         public virtual DbSet<Niveau> Niveau { get; set; }
         public virtual DbSet<Notes> Notes { get; set; }
         public virtual DbSet<Notification> Notification { get; set; }
         public virtual DbSet<Periode> Periode { get; set; }
+        public virtual DbSet<Profil> Profil { get; set; }
         public virtual DbSet<Programme> Programme { get; set; }
         public virtual DbSet<Province> Province { get; set; }
         public virtual DbSet<Resultat> Resultat { get; set; }
@@ -109,6 +112,9 @@ namespace ServerApp.entity
                 entity.HasIndex(e => e.Matricule)
                     .HasName("matricule");
 
+                entity.HasIndex(e => e.Status)
+                    .HasName("compte_ibfk_2");
+
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .HasColumnType("int(11)");
@@ -155,13 +161,18 @@ namespace ServerApp.entity
 
                 entity.Property(e => e.Status)
                     .HasColumnName("status")
-                    .HasColumnType("int(1)");
+                    .HasColumnType("int(11)");
 
                 entity.HasOne(d => d.MatriculeNavigation)
                     .WithMany(p => p.Compte)
                     .HasForeignKey(d => d.Matricule)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("compte_ibfk_1");
+
+                entity.HasOne(d => d.StatusNavigation)
+                    .WithMany(p => p.Compte)
+                    .HasForeignKey(d => d.Status)
+                    .HasConstraintName("compte_ibfk_2");
             });
 
             modelBuilder.Entity<Connect>(entity =>
@@ -184,6 +195,44 @@ namespace ServerApp.entity
                     .IsRequired()
                     .HasColumnName("matricule")
                     .HasColumnType("varchar(255)");
+            });
+
+            modelBuilder.Entity<DroitAccess>(entity =>
+            {
+                entity.HasKey(e => new { e.IdProfil, e.IdModule });
+
+                entity.ToTable("droit_access");
+
+                entity.HasIndex(e => e.Id)
+                    .HasName("id");
+
+                entity.HasIndex(e => e.IdModule)
+                    .HasName("droit_access_ibfk_2");
+
+                entity.Property(e => e.IdProfil)
+                    .HasColumnName("idProfil")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.IdModule)
+                    .HasColumnName("idModule")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedOnAdd();
+
+                entity.HasOne(d => d.IdModuleNavigation)
+                    .WithMany(p => p.DroitAccess)
+                    .HasForeignKey(d => d.IdModule)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("droit_access_ibfk_2");
+
+                entity.HasOne(d => d.IdProfilNavigation)
+                    .WithMany(p => p.DroitAccess)
+                    .HasForeignKey(d => d.IdProfil)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("droit_access_ibfk_1");
             });
 
             modelBuilder.Entity<Efmigrationshistory>(entity =>
@@ -450,6 +499,33 @@ namespace ServerApp.entity
                     .HasColumnType("decimal(5,2)");
             });
 
+            modelBuilder.Entity<Module>(entity =>
+            {
+                entity.ToTable("module");
+
+                entity.HasIndex(e => e.Id)
+                    .HasName("id");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Img)
+                    .IsRequired()
+                    .HasColumnName("img")
+                    .HasColumnType("varchar(255)");
+
+                entity.Property(e => e.Nom)
+                    .IsRequired()
+                    .HasColumnName("nom")
+                    .HasColumnType("varchar(255)");
+
+                entity.Property(e => e.Route)
+                    .IsRequired()
+                    .HasColumnName("route")
+                    .HasColumnType("varchar(255)");
+            });
+
             modelBuilder.Entity<Moyennes>(entity =>
             {
                 entity.HasKey(e => new { e.Matricule, e.Idue, e.Idsemestre, e.Annee });
@@ -685,6 +761,23 @@ namespace ServerApp.entity
                     .HasColumnType("int(2)");
             });
 
+            modelBuilder.Entity<Profil>(entity =>
+            {
+                entity.ToTable("profil");
+
+                entity.HasIndex(e => e.Id)
+                    .HasName("id");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Role)
+                    .IsRequired()
+                    .HasColumnName("role")
+                    .HasColumnType("varchar(255)");
+            });
+
             modelBuilder.Entity<Programme>(entity =>
             {
                 entity.HasKey(e => new { e.Idclasse, e.Idue, e.Annee });
@@ -692,7 +785,7 @@ namespace ServerApp.entity
                 entity.ToTable("programme");
 
                 entity.HasIndex(e => e.Enseignant)
-                    .HasName("programme_ibfk_3");
+                    .HasName("programme_ibfk_5");
 
                 entity.HasIndex(e => e.Id)
                     .HasName("id_2")
@@ -722,8 +815,9 @@ namespace ServerApp.entity
                 entity.Property(e => e.Credit).HasColumnName("CREDIT");
 
                 entity.Property(e => e.Enseignant)
+                    .IsRequired()
                     .HasColumnName("enseignant")
-                    .HasColumnType("int(11)");
+                    .HasColumnType("varchar(255)");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
@@ -738,7 +832,7 @@ namespace ServerApp.entity
                     .WithMany(p => p.Programme)
                     .HasForeignKey(d => d.Enseignant)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("programme_ibfk_3");
+                    .HasConstraintName("programme_ibfk_5");
 
                 entity.HasOne(d => d.IdclasseNavigation)
                     .WithMany(p => p.Programme)
@@ -946,6 +1040,8 @@ namespace ServerApp.entity
 
             modelBuilder.Entity<Time>(entity =>
             {
+                entity.HasKey(e => new { e.Id, e.Idprogramme, e.Idsalle, e.Idperiode, e.Idjour });
+
                 entity.ToTable("time");
 
                 entity.HasIndex(e => e.Idjour)
@@ -953,6 +1049,9 @@ namespace ServerApp.entity
 
                 entity.HasIndex(e => e.Idperiode)
                     .HasName("time_ibfk_2");
+
+                entity.HasIndex(e => e.Idprogramme)
+                    .HasName("IDPROGRAMME_2");
 
                 entity.HasIndex(e => e.Idsalle)
                     .HasName("time_ibfk3");
@@ -962,16 +1061,8 @@ namespace ServerApp.entity
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .HasColumnType("int(11)");
-
-                entity.Property(e => e.Idjour)
-                    .HasColumnName("IDJOUR")
                     .HasColumnType("int(11)")
-                    .HasDefaultValueSql("'1'");
-
-                entity.Property(e => e.Idperiode)
-                    .HasColumnName("IDPERIODE")
-                    .HasColumnType("int(11)");
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Idprogramme)
                     .HasColumnName("IDPROGRAMME")
@@ -981,9 +1072,19 @@ namespace ServerApp.entity
                     .HasColumnName("IDSALLE")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.Idperiode)
+                    .HasColumnName("IDPERIODE")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Idjour)
+                    .HasColumnName("IDJOUR")
+                    .HasColumnType("int(11)")
+                    .HasDefaultValueSql("'1'");
+
                 entity.HasOne(d => d.IdjourNavigation)
                     .WithMany(p => p.Time)
                     .HasForeignKey(d => d.Idjour)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("time_ibfk_4");
 
                 entity.HasOne(d => d.IdperiodeNavigation)

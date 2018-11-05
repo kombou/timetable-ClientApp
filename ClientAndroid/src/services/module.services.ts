@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
+import {SERVER_URL} from "../models/Serveur";
 
 @Injectable()
 export class ModuleServices {
-  url = 'http://localhost:5000/api/module'
+  url = `${SERVER_URL}/api/modules`;
 }

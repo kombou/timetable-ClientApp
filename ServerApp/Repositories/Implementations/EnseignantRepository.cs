@@ -8,15 +8,30 @@ using System.Threading.Tasks;
 
 namespace ServerApp.Repositories.Implementations
 {
-    public class EnseignantRepository : Repository<Enseignant, int>, IEnseignantRepository
+    public class EnseignantRepository : Repository<Compte, string>, IEnseignantRepository
     {
         public EnseignantRepository(bd_timetableContext context): base(context) {}
 
-        public override DbSet<Enseignant> Collections => context.Enseignant;
+        public override DbSet<Compte> Collections => context.Compte;
 
-        public bool EnseignantExists(int id)
+        public override IEnumerable<Compte> List()
         {
-            return context.Enseignant.Any(e => e.Id == id);
+            return context.Compte.Include(e => e.MatriculeNavigation)
+                .Where(e => e.Status == 2)
+                .ToArray();
+        }
+
+        public override Compte this[string id]
+        {
+            get
+            {
+                return context.Compte.FirstOrDefault(c => c.Matricule == id && c.Status == 2);
+            }
+        }
+
+        public bool EnseignantExists(string matricule)
+        {
+            return context.Compte.Any(e => e.Matricule == matricule && e.Status == 2);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ServerApp.donnees
+namespace ServerApp.entity
 {
     public partial class Profil
     {

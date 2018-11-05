@@ -40,14 +40,14 @@ namespace ServerApp.Controllers
             this.service = service;
         }
 
-        [HttpPost(Name ="/classe")]
-        public IEnumerable<Time> TimeTableOfClasse([FromBody] Classe classe, int semestre) => repository.TimeTableOfClasse(classe,semestre);
+        [HttpGet("classe/{idClasse}/{semestre}")]
+        public IEnumerable<Time> TimeTableOfClasse(int idClasse, int semestre) => repository.TimeTableOfClasse(idClasse, semestre);
 
-        [HttpPost("enseignant/{semestre}")]
-        public IEnumerable<Time> TimeTableOfEnseignant([FromBody] Enseignant enseignant, int semestre) => repository.TimeTableOfEnseignant(enseignant,semestre);
+        [HttpGet("enseignant/{idEnseignant}/{semestre}")]
+        public IEnumerable<Time> TimeTableOfEnseignant(string matriculeEnseignant, int semestre) => repository.TimeTableOfEnseignant(matriculeEnseignant, semestre);
 
-        [HttpPost("salle/{semestre}")]
-        public IEnumerable<Time> TimeTableOfSalwle([FromBody] Salle salle, int semestre) => repository.TimeTableOfSalle(salle,semestre);
+        [HttpGet("salle/{idSalle}/{semestre}")]
+        public IEnumerable<Time> TimeTableOfSalwle(int idSalle, int semestre) => repository.TimeTableOfSalle(idSalle, semestre);
 
         [HttpPost("{semestre}")]
         public async Task<IActionResult> Add([FromBody] Time time, int semestre)
@@ -96,11 +96,11 @@ namespace ServerApp.Controllers
 
             Salle salle = salleRepository[time.Idsalle];
             Programme programme = programmeRepository[time.Idprogramme];
-            Enseignant enseignant = enseignantRepository[programme.Enseignant];
+            Compte enseignant = enseignantRepository[programme.Enseignant];
 
             //verifion que la salle est libre
 
-            foreach (var t in repository.TimeTableOfSalle(salle, semestre))
+            foreach (var t in repository.TimeTableOfSalle(salle.Id, semestre))
             {
                 Periode p = periodeRepository[t.Idperiode];
                 Jour j = jourRepository[t.Idjour];
@@ -117,7 +117,7 @@ namespace ServerApp.Controllers
             }
 
             //verifion si l'enseigiant es libre
-            foreach (var t in repository.TimeTableOfEnseignant(enseignant, semestre))
+            foreach (var t in repository.TimeTableOfEnseignant(enseignant.Matricule, semestre))
             {
                 Periode p = periodeRepository[t.Idperiode];
                 Jour j = jourRepository[t.Idjour];
@@ -127,7 +127,7 @@ namespace ServerApp.Controllers
 
                 if (modelPeriode.OverLap(model))
                 {
-                    ModelState.AddModelError("enseignant", $"L'enseignant {enseignant.Nom} n'est pas libre le {j.Nom} de {model.Debut.Hour}h{model.Debut.Minute} à {model.Fin.Hour}h{model.Fin.Minute}.");
+                    ModelState.AddModelError("enseignant", $"L'enseignant {enseignant.MatriculeNavigation.Nom} n'est pas libre le {j.Nom} de {model.Debut.Hour}h{model.Debut.Minute} à {model.Fin.Hour}h{model.Fin.Minute}.");
                     return BadRequest(ModelState);
 
                 }

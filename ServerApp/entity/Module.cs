@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
-namespace ServerApp.donnees
+namespace ServerApp.entity
 {
     public partial class Module
     {
@@ -15,6 +16,7 @@ namespace ServerApp.donnees
         public string Route { get; set; }
         public string Img { get; set; }
 
+        [JsonIgnore]
         public ICollection<DroitAccess> DroitAccess { get; set; }
     }
 }

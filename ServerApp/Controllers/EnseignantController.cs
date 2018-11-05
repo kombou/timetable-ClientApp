@@ -18,6 +18,6 @@ namespace ServerApp.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Enseignant> List() => repository.List();
+        public IEnumerable<Compte> List() => repository.List();
     }
 }

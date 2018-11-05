@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServerApp.Repositories.Contracts
 {
-    public interface IEnseignantRepository: IRepository<Compte,string>
+    public interface IAccessRepository : IRepository<DroitAccess,int>
     {
-        bool EnseignantExists(string matricule);
-
     }
 }
