@@ -40,11 +40,12 @@ namespace ServerApp
             services.AddTransient<IPeriodeRepository, PeriodeRepository>();
             services.AddTransient<IJourRepository, JourRepository>();
             services.AddTransient<IProgrammeRepository, ProgrammeRepository>();
+            services.AddTransient<ICompteRepository, CompteRepository>();
             services.AddSingleton<ITimeService, TimeService>();
             services.AddCors(options => {
                 options.AddPolicy("CorsPolicy", builder => builder
 
-                .WithOrigins("http://localhost:4200")
+                .WithOrigins("http://localhost:8100")
                 .AllowAnyHeader()
                 .AllowAnyOrigin()
                 .AllowAnyMethod()

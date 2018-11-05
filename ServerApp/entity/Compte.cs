@@ -18,5 +18,6 @@ namespace ServerApp.entity
         public int? Status { get; set; }
 
         public Etudiant MatriculeNavigation { get; set; }
+        public Profil StatusNavigation { get; set; }
     }
 }

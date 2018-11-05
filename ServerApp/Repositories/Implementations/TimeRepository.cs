@@ -29,8 +29,9 @@ namespace ServerApp.Repositories.Implementations
         public override DbSet<Time> Collections => context.Time;
 
 
-        public IEnumerable<Time> TimeTableOfClasse(Classe classe, int semestre)
+        public IEnumerable<Time> TimeTableOfClasse(int idClasse, int semestre)
         {
+            Classe classe = classeRepository[idClasse];
 
             return Collections
                 .Include(p => p.IdprogrammeNavigation)
@@ -47,8 +48,10 @@ namespace ServerApp.Repositories.Implementations
                 .ToArray();
         }
 
-        public IEnumerable<Time> TimeTableOfSalle(Salle salle, int semestre)
+        public IEnumerable<Time> TimeTableOfSalle(int idSalle, int semestre)
         {
+            Salle salle = salleRepository[idSalle];
+
             return Collections
                 .Include(p => p.IdprogrammeNavigation)
                 .Include(p => p.IdprogrammeNavigation.EnseignantNavigation)
@@ -62,8 +65,9 @@ namespace ServerApp.Repositories.Implementations
                 .ToArray();
         }
 
-        public IEnumerable<Time> TimeTableOfEnseignant(Enseignant enseignant, int semestre)
+        public IEnumerable<Time> TimeTableOfEnseignant(string matriculeEnseignant, int semestre)
         {
+            Compte enseignant = enseignantRepository[matriculeEnseignant];
             return Collections
                  .Include(p => p.IdprogrammeNavigation)
                  .Include(p => p.IdprogrammeNavigation.EnseignantNavigation)
@@ -72,7 +76,7 @@ namespace ServerApp.Repositories.Implementations
                  .Include(c => c.IdperiodeNavigation)
                  .Include(j => j.IdjourNavigation)
                  .Include(s => s.IdsalleNavigation)
-                 .Where(p => p.IdprogrammeNavigation.Enseignant == enseignant.Id)
+                 .Where(p => p.IdprogrammeNavigation.Enseignant == enseignant.Matricule)
                  .OrderBy(p => p.Idperiode)
                  .ToArray();
         }
@@ -105,17 +109,17 @@ namespace ServerApp.Repositories.Implementations
                 .Select(p => p.IdperiodeNavigation);
         }
 
-        public IEnumerable<Periode> PeriodesOfEnseignant(int idEnseignant)
+        public IEnumerable<Periode> PeriodesOfEnseignant(string idEnseignant)
         {
             if (!enseignantRepository.EnseignantExists(idEnseignant))
             {
                 return new List<Periode>();
             }
-            Enseignant enseignant = enseignantRepository[idEnseignant];
+            Compte enseignant = enseignantRepository[idEnseignant];
 
             return Collections
                  .Include(p => p.IdprogrammeNavigation)
-                 .Where(p => p.IdprogrammeNavigation.Enseignant == enseignant.Id)
+                 .Where(p => p.IdprogrammeNavigation.Enseignant == enseignant.Matricule)
                  .Select(p => p.IdperiodeNavigation);
         }
     }

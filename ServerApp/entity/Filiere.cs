@@ -1,9 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ServerApp.entity
-{
+{ 
     public partial class Filiere
     {
         public Filiere()
@@ -18,7 +17,6 @@ namespace ServerApp.entity
         public string Nom { get; set; }
         public string Name { get; set; }
 
-        [JsonIgnore]
         public ICollection<Classe> Classe { get; set; }
         public ICollection<Specialite> Specialite { get; set; }
         public ICollection<Ue> Ue { get; set; }

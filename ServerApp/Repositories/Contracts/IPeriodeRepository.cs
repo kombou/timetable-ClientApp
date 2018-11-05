@@ -9,6 +9,5 @@ namespace ServerApp.Repositories.Contracts
     public interface IPeriodeRepository : IRepository<Periode, int>
     {
         bool PeriodeExists(int id);
-        bool Compare(Periode periodeCompare, Periode period);
     }
 }

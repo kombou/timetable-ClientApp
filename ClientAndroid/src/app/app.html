@@ -1,0 +1,41 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content padding>
+    <ion-list>
+      <button ion-item
+              *ngIf="authService.isAuth"
+              icon-start
+              (click)="onTogglePage(tabsPage)">
+        <ion-icon name="home"></ion-icon>
+        Home
+      </button>
+      <button ion-item
+              *ngIf="!authService.isAuth"
+              icon-start
+              (click)="onTogglePage(authPage, {mode: 'new'})">
+        <ion-icon name="person-add"></ion-icon>
+        Create user
+      </button>
+      <button ion-item
+              *ngIf="!authService.isAuth"
+              icon-start
+              (click)="onTogglePage(authPage, {mode: 'connect'})">
+        <ion-icon name="person"></ion-icon>
+        Connexion
+      </button>
+      <button ion-item
+              *ngIf="authService.isAuth"
+              icon-start
+              (click)="onDisconnect()">
+        <ion-icon name="exit"></ion-icon>
+        Deconnexion
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-nav [root]="tabsPage" #content></ion-nav>

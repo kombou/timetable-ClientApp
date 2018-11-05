@@ -1,0 +1,7 @@
+{
+  "name": "ClientAndroid",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

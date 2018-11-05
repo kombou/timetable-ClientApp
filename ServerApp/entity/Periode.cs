@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ServerApp.entity
@@ -16,7 +15,7 @@ namespace ServerApp.entity
         public int MinuteDebut { get; set; }
         public int HeureFin { get; set; }
         public int MinuteFin { get; set; }
-        [JsonIgnore]
+
         public ICollection<Time> Time { get; set; }
     }
 }

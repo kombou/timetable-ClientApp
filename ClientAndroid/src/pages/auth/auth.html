@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons>
+      <button icon-only
+              ion-button
+              (click)="onToggleMenu()">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title *ngIf="mode === 'new'">Create User</ion-title>
+    <ion-title *ngIf="mode === 'connect'">Connexion</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="authForm">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Matricule</ion-label>
+        <ion-input formControlName="matricule"></ion-input>
+        <p *ngIf="errorMessage" color="danger">{{errorMessage.Matricule}}</p>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button
+            full
+            (click)="onSubmitForm()">Soumettre</button>
+  </form>
+</ion-content>
